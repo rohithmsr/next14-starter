@@ -6,7 +6,7 @@ import styles from "./singlePost.module.css";
 
 // FETCH DATA WITH AN API
 // const getData = async (slug) => {
-//   const res = await fetch(`http://localhost:3000/api/blog/${slug}`);
+//   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`);
 
 //   if (!res.ok) {
 //     throw new Error("Something went wrong");
@@ -31,10 +31,11 @@ const SinglePostPage = async ({ params }) => {
 
   // FETCH DATA WITH AN API
   // const post = await getData(slug);
+
   const post = {
     img: "https://images.pexels.com/photos/762041/pexels-photo-762041.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     title: "Post title",
-    desc: "My dear thala",
+    desc: slug + " x My dear thala !",
     body: "Lorem ipsum, ilthakasa iya,thakal",
     createdAt: "2024-04-21",
   };
@@ -71,7 +72,7 @@ const SinglePostPage = async ({ params }) => {
           <div className={styles.detailText}>
             <span className={styles.detailTitle}>Published</span>
             <span className={styles.detailValue}>
-              {post.createdAt.toString().slice(4, 16)}
+              {new Date("2024-04-21").toString().slice(4, 16)}
             </span>
           </div>
         </div>

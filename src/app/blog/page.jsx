@@ -1,39 +1,33 @@
-import PostCard from "../../components/postCard/PostCard";
+import PostCard from "@/components/postCard/postCard";
 import styles from "./blog.module.css";
 
-const BlogPage = () => {
+// FETCH DATA WITH AN API
+const getData = async () => {
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts", {
+    next: { revalidate: 3600 },
+  });
+
+  if (!res.ok) {
+    throw new Error("Something went wrong");
+  }
+
+  return res.json();
+};
+
+const BlogPage = async () => {
+  // FETCH DATA WITH AN API
+  const posts = await getData();
+
+  // FETCH DATA WITHOUT AN API
+  // const posts = await getPosts();
+
   return (
     <div className={styles.container}>
-      <PostCard
-        post={{
-          img: "https://images.pexels.com/photos/762041/pexels-photo-762041.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-          title: "Post title",
-          desc: "My dear thala",
-          body: "Lorem ipsum, ilthakasa iya,thakal",
-          createdAt: "2024-04-21",
-          slug: "post-slug-1",
-        }}
-      />
-      <PostCard
-        post={{
-          img: "https://images.pexels.com/photos/762041/pexels-photo-762041.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-          title: "Post title",
-          desc: "My dear thala",
-          body: "Lorem ipsum, ilthakasa iya,thakal",
-          createdAt: "2024-04-21",
-          slug: "post-slug-2",
-        }}
-      />
-      <PostCard
-        post={{
-          img: "https://images.pexels.com/photos/762041/pexels-photo-762041.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-          title: "Post title",
-          desc: "My dear thala",
-          body: "Lorem ipsum, ilthakasa iya,thakal",
-          createdAt: "2024-04-21",
-          slug: "post-slug-3",
-        }}
-      />
+      {posts.map((post) => (
+        <div className={styles.post} key={post.id}>
+          <PostCard post={post} />
+        </div>
+      ))}
     </div>
   );
 };
