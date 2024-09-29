@@ -6,6 +6,7 @@ import styles from "./contact.module.css";
 
 // const HydrationTestNoSSR = dynamic(()=>import("@/components/hydrationTest"), {ssr: false})
 
+// SEO
 export const metadata = {
   title: "Contact Page",
   description: "Contact description",

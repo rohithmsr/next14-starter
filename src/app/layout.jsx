@@ -5,8 +5,12 @@ import Footer from "@/components/footer/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
+// SEO
 export const metadata = {
-  title: "Next App",
+  title: {
+    default: "Next.js 14 Homepage",
+    template: "%s | Next.js 14",
+  },
   description: "Next.js starter app",
 };
 
