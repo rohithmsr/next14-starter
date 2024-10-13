@@ -4,6 +4,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { connectToDb } from "./utils";
 import { User } from "./models";
 import bcrypt from "bcryptjs";
+import { authConfig } from "@/lib/auth.config";
 
 const login = async (credentials) => {
   const { username, password } = credentials;
@@ -70,6 +71,7 @@ export const authOptions = {
       }
       return true;
     },
+    ...authConfig.callbacks,
   },
 };
 
@@ -78,4 +80,4 @@ export const {
   auth,
   signIn,
   signOut,
-} = NextAuth(authOptions);
+} = NextAuth({ ...authConfig, ...authOptions });

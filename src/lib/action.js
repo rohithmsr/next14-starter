@@ -93,7 +93,6 @@ export const login = async (_, formData) => {
 
   try {
     await signIn("credentials", { username, password });
-    return { success: true };
   } catch (error) {
     console.log(error);
 
@@ -102,5 +101,7 @@ export const login = async (_, formData) => {
     }
     // return { error: "Something went wrong!" };
     throw error; // to handle NEXT_REDIRECT error
+  } finally {
+    //
   }
 };
