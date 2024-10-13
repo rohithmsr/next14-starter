@@ -53,7 +53,7 @@ export const handleLogout = async () => {
   await signOut();
 };
 
-export const register = async (formData) => {
+export const register = async (_, formData) => {
   const { username, email, password, passwordRepeat, img } =
     Object.fromEntries(formData);
 
@@ -80,6 +80,8 @@ export const register = async (formData) => {
     });
     await newUser.save();
     console.log("Saved to database");
+
+    return { success: true };
   } catch (error) {
     console.log(error);
     return { error: "Something went wrong!" };
@@ -91,6 +93,7 @@ export const login = async (formData) => {
 
   try {
     await signIn("credentials", { username, password });
+    return { success: true };
   } catch (error) {
     console.log(error);
     return { error: "Something went wrong!" };
